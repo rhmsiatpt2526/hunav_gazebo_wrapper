@@ -370,24 +370,6 @@ def generate_launch_description():
     )
     # DeclareLaunchArgument('gzpose', default_value='-x 0.0 -y 0.0 -z 0.1 -R 0.0 -P 0.0 -Y 1.57',
     #                      description='The robot initial position in the world')
-<<<<<<< HEAD
-    declare_arg_px = DeclareLaunchArgument('gzpose_x', default_value='0.0',
-            description='The robot initial position in the X axis of the world')
-    declare_arg_py = DeclareLaunchArgument('gzpose_y', default_value='0.0',
-            description='The robot initial position in the Y axis of the world')
-    declare_arg_pz = DeclareLaunchArgument('gzpose_z', default_value='0.20',
-            description='The robot initial position in the Z axis of the world')
-    declare_arg_pR = DeclareLaunchArgument('gzpose_R', default_value='0.0',
-            description='The robot initial roll angle in the world')
-    declare_arg_pP = DeclareLaunchArgument('gzpose_P', default_value='0.0',
-            description='The robot initial pitch angle in the world')
-    declare_arg_pY = DeclareLaunchArgument('gzpose_Y', default_value='0.0',
-            description='The robot initial yaw angle in the world')
-    declare_arg_laser = DeclareLaunchArgument('laser_model', default_value='sick-571',
-            description='the laser model to be used')
-    declare_arg_rgbd = DeclareLaunchArgument('rgbd_sensors', default_value='True',
-            description='whether to use rgbd cameras or not')
-=======
     declare_arg_px = DeclareLaunchArgument(
         "gzpose_x",
         default_value="0.0",
@@ -428,8 +410,6 @@ def generate_launch_description():
         default_value="True",
         description="whether to use rgbd cameras or not",
     )
->>>>>>> 5b6c3d7 (Custom social navigation scenarios and laser model fix)
-
     ld = LaunchDescription()
 
     # set environment variables
