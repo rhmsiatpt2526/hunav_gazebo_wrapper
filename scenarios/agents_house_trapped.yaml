@@ -1,0 +1,85 @@
+hunav_loader:
+ros__parameters:
+yaml_base_name: agents_house_trapped
+simulator: Gazebo Classic
+map: house
+publish_people: true
+
+```
+global_goals:
+  1: {x: 2.0, y: 2.0}
+
+agents:
+  - blocker1
+  - blocker2
+  - blocker3
+  - blocker4
+
+blocker1:
+  id: 1
+  skin: 0
+  max_vel: 0.0
+  radius: 0.45
+  goal_radius: 0.3
+  cyclic_goals: false
+  init_pose:
+    x: 0.8
+    y: 0.0
+    z: 1.25
+    h: 0.0
+  behavior:
+    type: Regular
+    configuration: 0
+  goals: [1]
+
+blocker2:
+  id: 2
+  skin: 1
+  max_vel: 0.0
+  radius: 0.45
+  goal_radius: 0.3
+  cyclic_goals: false
+  init_pose:
+    x: -0.8
+    y: 0.0
+    z: 1.25
+    h: 0.0
+  behavior:
+    type: Regular
+    configuration: 0
+  goals: [1]
+
+blocker3:
+  id: 3
+  skin: 2
+  max_vel: 0.0
+  radius: 0.45
+  goal_radius: 0.3
+  cyclic_goals: false
+  init_pose:
+    x: 0.0
+    y: 0.8
+    z: 1.25
+    h: 0.0
+  behavior:
+    type: Regular
+    configuration: 0
+  goals: [1]
+
+blocker4:
+  id: 4
+  skin: 3
+  max_vel: 0.0
+  radius: 0.45
+  goal_radius: 0.3
+  cyclic_goals: false
+  init_pose:
+    x: 0.0
+    y: -0.8
+    z: 1.25
+    h: 0.0
+  behavior:
+    type: Regular
+    configuration: 0
+  goals: [1]
+```
