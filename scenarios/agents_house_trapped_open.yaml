@@ -1,6 +1,6 @@
 hunav_loader:
   ros__parameters:
-    yaml_base_name: agents_house_trapped
+    yaml_base_name: agents_house_trapped_open
     simulator: Gazebo Classic
     map: house
     publish_people: true
@@ -14,14 +14,10 @@ hunav_loader:
       3:
         x: 0.0
         y: 0.85
-      4:
-        x: 0.0
-        y: -0.85
     agents:
       - agent1
       - agent2
       - agent3
-      - agent4
     agent1:
       id: 1
       group_id: -1
@@ -88,25 +84,3 @@ hunav_loader:
         other_force_factor: 10.0
       goals:
         - 3
-    agent4:
-      id: 4
-      group_id: -1
-      skin: 3
-      max_vel: 0.05
-      radius: 0.4
-      goal_radius: 0.1
-      cyclic_goals: false
-      init_pose:
-        x: 0.0
-        y: -0.85
-        z: 1.250
-        h: 1.5708
-      behavior:
-        type: Regular
-        configuration: 2
-        goal_force_factor: 2.0
-        obstacle_force_factor: 10.0
-        social_force_factor: 5.0
-        other_force_factor: 10.0
-      goals:
-        - 4
