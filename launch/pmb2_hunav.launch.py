@@ -28,6 +28,7 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
+from nav2_common.launch import RewrittenYaml
 from launch_param_builder import load_xacro
 from launch_pal.actions import CheckPublicSim
 from launch_pal.robot_arguments import CommonArgs
@@ -171,6 +172,19 @@ def declare_actions(
     
     pmb2_2dnav = get_package_share_directory("pmb2_2dnav")
     wrapper = get_package_share_directory("hunav_gazebo_wrapper")
+    agorabot_bringup = get_package_share_directory("agorabot_bringup")
+    nav2_params_file = RewrittenYaml(
+        source_file=os.path.join(wrapper, "launch", "pmb2_params", "pmb2_nav_public_sim.yaml"),
+        root_key="",
+        param_rewrites={
+            "default_bt_xml_filename": os.path.join(
+                agorabot_bringup,
+                "behavior_trees",
+                "social_navigation.xml",
+            ),
+        },
+        convert_types=True,
+    )
 
     nav_launch = PathJoinSubstitution([
         FindPackageShare("nav2_bringup"),
@@ -180,9 +194,7 @@ def declare_actions(
     nav2_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([nav_launch]),
         launch_arguments={
-            "params_file": os.path.join(
-                wrapper, "launch", "pmb2_params", "pmb2_nav_public_sim.yaml"
-            ),
+            "params_file": nav2_params_file,
             "use_sim_time": "True",
         }.items(),
         condition=IfCondition(LaunchConfiguration("navigation"))
@@ -196,9 +208,7 @@ def declare_actions(
     slam_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([slam_launch]),
         launch_arguments={
-            "params_file": os.path.join(
-                wrapper, "launch", "pmb2_params", "pmb2_nav_public_sim.yaml"
-            ),
+            "params_file": nav2_params_file,
             "use_sim_time": "True",
         }.items(),
         condition=IfCondition(LaunchConfiguration("slam")),
@@ -212,9 +222,7 @@ def declare_actions(
     loc_bringup_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([loc_launch]),
         launch_arguments={
-            "params_file": os.path.join(
-                wrapper, "launch", "pmb2_params", "pmb2_nav_public_sim.yaml"
-            ),
+            "params_file": nav2_params_file,
             "map": LaunchConfiguration("world_name"),
             "use_sim_time": "True",
         }.items(),
