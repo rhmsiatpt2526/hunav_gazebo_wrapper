@@ -22,7 +22,7 @@ from launch.substitutions import (
     PythonExpression,
     EnvironmentVariable,
 )
-from launch.conditions import UnlessCondition
+from launch.conditions import UnlessCondition, IfCondition
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.event_handlers import OnProcessStart
@@ -213,8 +213,7 @@ def generate_launch_description():
         output="screen",
         # additional_env=env,
         shell=True,
-        on_exit=Shutdown(),
-        # condition=IfCondition(LaunchConfiguration('server_required')),
+        condition=IfCondition(LaunchConfiguration("launch_gazebo_gui")),
     )
 
     gz_launch_event = RegisterEventHandler(
@@ -410,6 +409,11 @@ def generate_launch_description():
         default_value="True",
         description="whether to use rgbd cameras or not",
     )
+    declare_launch_gazebo_gui = DeclareLaunchArgument(
+        "launch_gazebo_gui",
+        default_value="True",
+        description="Launch Gazebo GUI client (True/False). Set to False to reduce CPU/GPU load.",
+    )
     ld = LaunchDescription()
 
     # set environment variables
@@ -433,6 +437,7 @@ def generate_launch_description():
     ld.add_action(declare_arg_namespace)
     ld.add_action(declare_arg_laser)
     ld.add_action(declare_arg_rgbd)
+    ld.add_action(declare_launch_gazebo_gui)
     ld.add_action(declare_arg_px)
     ld.add_action(declare_arg_py)
     ld.add_action(declare_arg_pz)
