@@ -37,7 +37,7 @@ hunav_loader:
       id: 1
       group_id: -1
       skin: 3
-      max_vel: 0.01
+      max_vel: 0.06
       radius: 0.4
       goal_radius: 0.3
       cyclic_goals: true
@@ -62,7 +62,7 @@ hunav_loader:
       id: 2
       group_id: -1
       skin: 0
-      max_vel: 0.01
+      max_vel: 0.06
       radius: 0.4
       goal_radius: 0.3
       cyclic_goals: true
@@ -86,7 +86,7 @@ hunav_loader:
       id: 3
       group_id: -1
       skin: 2
-      max_vel: 0.01
+      max_vel: 0.06
       radius: 0.4
       goal_radius: 0.3
       cyclic_goals: true
