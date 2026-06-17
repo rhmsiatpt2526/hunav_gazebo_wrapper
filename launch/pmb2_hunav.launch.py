@@ -177,7 +177,7 @@ def declare_actions(
         source_file=os.path.join(wrapper, "launch", "pmb2_params", "pmb2_nav_public_sim.yaml"),
         root_key="",
         param_rewrites={
-            "default_bt_xml_filename": os.path.join(
+            "default_nav_to_pose_bt_xml": os.path.join(
                 agorabot_bringup,
                 "behavior_trees",
                 "social_navigation.xml",
